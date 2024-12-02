@@ -5,12 +5,12 @@ export type Guitar = {
     description: string
     price: number
 }
-
-export type CartItem = {
-    id: number
-    name: string
-    image: string
-    description: string
-    price: number
-    quiantity: number
+//* Heredar un type
+export type CartItem = Guitar & {
+    quantity: number
 }
+
+//* Extender un type
+// export interface CartItem extends Guitar {
+//     quantity: number
+// }
