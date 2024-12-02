@@ -1,15 +1,11 @@
-type Guitar = {
-    id: number
-    name: string
-    image: string
-    description: string
-    price: number
-}
+import type { Guitar } from '../types/index'
+
 // Type Separado
 type GuitarProps = {
     guitar : Guitar,
     addToCart : (item: Guitar) => void
 }
+
 // Type Separado
 export default function Guitar({guitar, addToCart} : GuitarProps) {
 
