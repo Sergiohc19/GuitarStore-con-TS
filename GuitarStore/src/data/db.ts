@@ -7,7 +7,7 @@ type Guitar = {
 }
 
 
-// interface Guitar = {
+// interface Guitar  {
 //     id: number
 //     name: string
 //     image: string

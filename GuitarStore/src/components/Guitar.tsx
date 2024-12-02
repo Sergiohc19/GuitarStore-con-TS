@@ -5,9 +5,13 @@ type Guitar = {
     description: string
     price: number
 }
-
-export default function Guitar({guitar, addToCart} : {guitar : Guitar, addToCart : (item: Guitar) => void
-}) {
+// Type Separado
+type GuitarProps = {
+    guitar : Guitar,
+    addToCart : (item: Guitar) => void
+}
+// Type Separado
+export default function Guitar({guitar, addToCart} : GuitarProps) {
 
     const { name, image, description, price } = guitar
 
