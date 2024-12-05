@@ -14,3 +14,13 @@ export type CartItem = Guitar & {
 // export interface CartItem extends Guitar {
 //     quantity: number
 // }
+
+//* Omit<Type, Keys>
+// export type CartItem = Omit<Guitar, 'id' | 'name' | 'price'> & {
+//     quantity: number
+// }
+
+//* Pick<Type, Keys>
+// export type CartItem = Pick<Guitar, 'id' | 'name' | 'price'> & {
+//     quantity: number
+// }
