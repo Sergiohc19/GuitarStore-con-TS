@@ -27,14 +27,16 @@ export var useCart = function () {
     };
     var data = useState(db)[0];
     var _a = useState(initialCart), cart = _a[0], setCart = _a[1];
+    var _b = useState(""), message = _b[0], setMessage = _b[1];
     var MIN_ITEMS = 1;
     var MAX_ITEMS = 5;
     useEffect(function () {
         localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
+    // Función para añadir productos al carrito
     function addToCart(item) {
         var itemExists = cart.findIndex(function (guitar) { return guitar.id === item.id; });
-        if (itemExists >= 0) { // existe en el carrito
+        if (itemExists >= 0) { // Existe en el carrito
             if (cart[itemExists].quantity >= MAX_ITEMS)
                 return;
             var updatedCart = __spreadArray([], cart, true);
@@ -44,11 +46,15 @@ export var useCart = function () {
         else {
             var newItem = __assign(__assign({}, item), { quantity: 1 });
             setCart(__spreadArray(__spreadArray([], cart, true), [newItem], false));
+            setMessage("El producto ".concat(item.name, " se a\u00F1adi\u00F3 al carrito"));
+            clearMessage(); // Limpiar el mensaje después de 3 segundos
         }
     }
+    // Función para eliminar productos del carrito
     function removeFromCart(id) {
         setCart(function (prevCart) { return prevCart.filter(function (guitar) { return guitar.id !== id; }); });
     }
+    // Función para disminuir la cantidad de un producto
     function decreaseQuantity(id) {
         var updatedCart = cart.map(function (item) {
             if (item.id === id && item.quantity > MIN_ITEMS) {
@@ -58,15 +64,28 @@ export var useCart = function () {
         });
         setCart(updatedCart);
     }
+    // Función para aumentar la cantidad de un producto
     function increaseQuantity(id) {
         var updatedCart = cart.map(function (item) {
             if (item.id === id && item.quantity < MAX_ITEMS) {
                 return __assign(__assign({}, item), { quantity: item.quantity + 1 });
             }
+            else if (item.id === id && item.quantity === MAX_ITEMS) {
+                setMessage("No puedes a\u00F1adir m\u00E1s de ".concat(MAX_ITEMS, " unidades de ").concat(item.name));
+                clearMessage(); // Limpiar el mensaje después de 3 segundos
+            }
             return item;
         });
-        setCart(updatedCart);
+        setCart(updatedCart); // Actualizar el carrito con la nueva cantidad
     }
+    // Función para limpiar el mensaje
+    var clearMessage = function () {
+        setTimeout(function () {
+            console.log("Limpiando mensaje..."); // Asegúrate de que esta línea se ejecuta
+            setMessage("");
+        }, 3000);
+    };
+    // Función para vaciar el carrito
     function clearCart() {
         setCart([]);
     }
@@ -82,6 +101,7 @@ export var useCart = function () {
         increaseQuantity: increaseQuantity,
         clearCart: clearCart,
         isEmpty: isEmpty,
-        cartTotal: cartTotal
+        cartTotal: cartTotal,
+        message: message // Asegúrate de devolver el mensaje
     };
 };

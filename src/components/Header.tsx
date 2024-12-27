@@ -10,8 +10,9 @@ type HeaderProps = {
     clearCart: () => void
     isEmpty: boolean
     cartTotal: number
-   
+    message: string | null; // Asegúrate de que "message" está definido aquí
 }
+
 
 export default function Header({
         cart, 
@@ -20,12 +21,33 @@ export default function Header({
         increaseQuantity, 
         clearCart, 
         isEmpty,
-        cartTotal
+        cartTotal,
+        message
     } : HeaderProps ) {
-
-
+       
+     
     return (
         <header className="py-5 header">
+        {message && (
+        <div style={{
+          position: "fixed",
+          top: "10px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          backgroundColor: "#008440",
+          color: "white",
+          border: "1px solid #00A550",
+          padding: "10px 20px",
+          borderRadius: "5px",
+          fontWeight: "bold",
+          zIndex: 1000,
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+        }}
+        >
+          {message}
+        </div>
+        )}
+  
             <div className="container-xl">
                 <div className="row justify-content-center justify-content-md-between">
                     <div className="col-8 col-md-3">
