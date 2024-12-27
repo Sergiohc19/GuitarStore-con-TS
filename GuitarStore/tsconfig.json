@@ -1,7 +1,14 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "compilerOptions": {
+    "target": "es5",  // Puedes mantener "es5" si necesitas compatibilidad con navegadores antiguos o cambiar a "esnext" para usar las características más modernas
+    "module": "esnext",
+    "jsx": "react-jsx", // Para React 17 o superior
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "lib": ["es2015", "dom"]  // Agregar esta línea para incluir las bibliotecas modernas de JavaScript
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }
