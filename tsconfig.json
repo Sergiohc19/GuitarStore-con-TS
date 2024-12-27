@@ -8,7 +8,7 @@
     "moduleResolution": "node",
     "skipLibCheck": true,
     "lib": ["es2015", "dom"]  // Agregar esta línea para incluir las bibliotecas modernas de JavaScript
+    
   },
-  "include": ["src"],
-  "exclude": ["node_modules"]
+ 
 }
