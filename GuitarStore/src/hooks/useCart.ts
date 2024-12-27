@@ -27,8 +27,8 @@ export const useCart = () => {
             updatedCart[itemExists].quantity++
             setCart(updatedCart)
         } else {
-            item.quantity = 1
-            setCart([...cart, item])
+            const newItem : CartItem = {...item, quantity: 1}
+            setCart([...cart, newItem])
         }
     }
 
